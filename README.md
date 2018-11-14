@@ -80,9 +80,9 @@ programs are needed.
     </li>
     <li>
       QEMU should open a graphical user interface showing the status of the booting process of the Raspberry Pi image. After successful boot open a command window and create a file in the following directory: `etc/udev/rules.d/90-qemu.rules`, the file should contain the following content.<br>
-      `KERNEL=="sda",SYMLINK=+"mmcblk0"`<br>
-      `KERNEL=="sda?",SYMLINK=+"mmcblkOp%n"`<br>
-      `KERNEL=="sda2",SYMLINK=+"root"`<br>
+      `KERNEL=="sda", SYMLINK+="mmcblk0"`<br>
+      `KERNEL=="sda?", SYMLINK+="mmcblk0p%n"`<br>
+      `KERNEL=="sda2", SYMLINK+="root"`<br>
       Shutdown QEMU after this step, by running:<br>
       `$sudo shutdown -h now`
     </li>
@@ -100,7 +100,7 @@ programs are needed.
         <li>Type `n` for creating a new partition</li>
         <li>Press `p` for new primary partition</li>
         <li>Enter partition number `2`</li>
-        <li>Next enter the start sector for partition two, this is the end partiton of partiton one, incremented by one!</li>
+        <li>Next enter the start sector for partition two, this is previous value of partiton two!</li>
         <li>Hit enter for the last sector to allocate the end sector</li>
         <li>
           Press w to write and exit<br>
@@ -132,10 +132,9 @@ In order to debug add the option `-serial stdio` to step 3.<br>
 </i><br>
 Special hanks to <a href="http://embedonix.com/articles/linux/emulating-raspberry-pi-on-linux/">Saeid Yazdaniy</a>, for an awesome article which I used as a starting point. Also thanks to <a href="https://blog.agchapman.com/using-qemu-to-emulate-a-raspberry-pi/">Alistair Chapman</a>,
   <a href="https://www.youtube.com/watch?v=xiQX0YXYuqU">TechWizTime</a> for the video version of this repo, as well as <a href="https://github.com/dhruvvyas90/qemu-rpi-kernel">dhruvvyas90</a> as he is the provider of the kernel image as well as the distribution.
-
 </div>
-<h2>Contributing</h2>
 
+<h2>Contributing</h2>
 <div>
 To get started with contributing to me GitHub repository, please contact me <a href="https://slack.com/">Slack<a/>.
 </div>
