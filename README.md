@@ -1,6 +1,10 @@
 
+
+
+
+
 <a href="https://www.raspberrypi.org/">
-  <img src="https://upload.wikimedia.org/wikipedia/de/thumb/c/cb/Raspberry_Pi_Logo.svg/1200px-Raspberry_Pi_Logo.svg.png" alt="Raspberry_Pi_Logo" style="width:42px;height:42px;">
+  <img src="https://upload.wikimedia.org/wikipedia/de/thumb/c/cb/Raspberry_Pi_Logo.svg/1200px-Raspberry_Pi_Logo.svg.png" alt="Raspberry_Pi_Logo" height="42px" width="42px" align="left">
 </a>
 
 <h1>Emulating a Raspberry Pi 3 with QEMU</h1>
