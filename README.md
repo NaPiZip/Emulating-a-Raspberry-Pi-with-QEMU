@@ -1,13 +1,7 @@
+<img src="https://upload.wikimedia.org/wikipedia/de/thumb/c/cb/Raspberry_Pi_Logo.svg/1200px-Raspberry_Pi_Logo.svg.png" alt="Raspberry_Pi_Logo" height="42px" width="42px" align="left">
 
 
-
-
-
-<a href="https://www.raspberrypi.org/">
-  <img src="https://upload.wikimedia.org/wikipedia/de/thumb/c/cb/Raspberry_Pi_Logo.svg/1200px-Raspberry_Pi_Logo.svg.png" alt="Raspberry_Pi_Logo" height="42px" width="42px" align="left">
-</a>
-
-<h1>Emulating a Raspberry Pi 3 with QEMU</h1>
+##Emulating a Raspberry Pi 3 with QEMU
 
 <div>
     <a href="https://github.com/NaPiZip/Docker_GUI_Apps_on_Windows">
