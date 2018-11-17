@@ -119,12 +119,14 @@ programs are needed.
         `$ sudo resize2fs /dev/sda2`
       </li>
       <li>
-        The next step is increasing the swap size by entering:<br>
-        `$ sudo nano /etc/dphys-swapfile`<br>
-        And change the setting `CON_SWAPSIZE=1024` restart the service by running:<br>
-        `$ sudo /etc/init.d/dphys-swapfile stop` and right afterwards<br>
-        `$ sudo /etc/init.d/dphys-swapfile start` the success can be verified by calling<br>
-        `$ free -m` the swap size should now contain the new value.
+        <div>
+          The next step is increasing the swap size by entering:<br>
+          `$ sudo nano /etc/dphys-swapfile`<br>
+          And change the setting `CON_SWAPSIZE=1024` restart the service by running:<br>
+          `$ sudo /etc/init.d/dphys-swapfile stop` and right afterwards<br>
+          `$ sudo /etc/init.d/dphys-swapfile start` the success can be verified by calling<br>
+          `$ free -m` the swap size should now contain the new value.
+        </div>
       </li>
     </li>
   </ol>
