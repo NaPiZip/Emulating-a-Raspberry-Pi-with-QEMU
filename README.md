@@ -27,9 +27,9 @@ This is a tutorial showing how to use QEMU to simulate a Raspberry Pi. The follo
 
 1. Download the latest version of the QEMU installer e.g [qemu-w64-setup-20181108.exe](https://qemu.weilnetz.de/w64/) and run it.
 2. Download a QEMU kernel image and a corresponding Raspberry Pi distribution, the files can be found on [dhruvvyas90](https://github.com/dhruvvyas90/qemu-rpi-kernel) GitHub page.
-  - kernel-qemu-4.9.xx-stretch
-  - 2017-11-29-raspbian-stretch.zip
-*Note:
+    - kernel-qemu-4.9.xx-stretch
+    -  2017-11-29-raspbian-stretch.zip<br>
+*Note:<br>
  It's important to use matching images for kernel and Raspberry Pi image!*
 
 ## Tutorial
@@ -37,24 +37,28 @@ This is a tutorial showing how to use QEMU to simulate a Raspberry Pi. The follo
 This tutorial is using particular versions for the Raspberry Pi kernel as well as for the distribution.
 
 1. Extract the Raspberry Pi image file `2017-11-29-raspbian-stretch.zip` into a new directory.
-2. Extract the kernel file `kernel-qemu-4.9.59-stretch_with_VirtFS` into the same directory.
-  *Note:
+2. Extract the kernel file `kernel-qemu-4.9.59-stretch_with_VirtFS` into the same directory.<br>
+  *Note:<br>
    This kernel version also needs a particular Device Tree Blob (.dtb) file [versatile-pb.dtb](https://github.com/dhruvvyas90/qemu-rpi-kernel/blob/master/versatile-pb.dtb).*
-3. Run the following command in the directory containing the extracted files:
+3. Run the following command in the directory containing the extracted files:<br>
    `C:/mydir>qemu-system-arm.exe -kernel kernel-qemu-4.9.59-stretch_with_VirtFS -cpu arm1176 -m 256 -M versatilepb -dtb versatile-pb.dtb -no-reboot -append "root=/dev/sda2 panic=1 rootfstype=ext4 rw" -net nic -net user,hostfwd=tcp::5022-:22 -hda 2017-11-29-raspbian-stretch.img`
-   A detailed description of all command arguments can be found [here](https://wiki.qemu.org/Documentation).
-   *Note:
+   A detailed description of all command arguments can be found [here](https://wiki.qemu.org/Documentation).<br>
+   *Note:<br>
     The configuration for the qemu is the default host NAT network (aka. qemu -net nic -net user configuration).
-    The option `hostfwd=tcp::5022-:22` connections from port 5022 on your host (your PC) to port 22 inside your qemu guest.
-4. QEMU should open a graphical user interface showing the status of the booting process of the Raspberry Pi image. After successful boot open a command window and create a file in the following directory: `etc/udev/rules.d/90-qemu.rules`, the file should contain the following content.<br>
-   `KERNEL=="sda", SYMLINK+="mmcblk0"`
-   `KERNEL=="sda?", SYMLINK+="mmcblk0p%n"`
-   `KERNEL=="sda2", SYMLINK+="root"`
-   Shutdown QEMU after this step, by running:
+    The option `hostfwd=tcp::5022-:22` connections from port 5022 on your host (your PC) to port 22 inside your qemu guest.*
+4. QEMU should open a graphical user interface showing the status of the booting process of the Raspberry Pi image. After successful boot open a command window and create a file in the following directory:<br>
+   `etc/udev/rules.d/90-qemu.rules`, the file should contain the following content.<br>
+   ```
+   KERNEL=="sda", SYMLINK+="mmcblk0"
+   KERNEL=="sda?", SYMLINK+="mmcblk0p%n"
+   KERNEL=="sda2", SYMLINK+="root"
+   ```
+
+   Shutdown QEMU after this step, by running:<br>
    `$sudo shutdown -h now`
-5. The next step is increasing the size of the filesystem of the image, the following command increases the size of the image by 2Gb:
+5. The next step is increasing the size of the filesystem of the image, the following command increases the size of the image by 2Gb:<br>
    `C:/mydir>qemu-image.exe resize 2017-11-29-raspbian-stretch.img +2G`
-6. Now it's time to expand the filesystem using fdisk, start QEMU by executing step tree. After QEMU has fully booted and the Pi home screen is visible, start opening a command prompt and type the command below:
+6. Now it's time to expand the filesystem using fdisk, start QEMU by executing step tree. After QEMU has fully booted and the Pi home screen is visible, start opening a command prompt and type the command below:<br>
    `$ sudo fdisk /dev/sda`
    -  Press p and hit return for showing the current partitions
    - Type d and return to enter delete mode
@@ -64,21 +68,20 @@ This tutorial is using particular versions for the Raspberry Pi kernel as well a
    - Enter partition number 2
    - Next enter the start sector for partition two, this is previous value of partiton two!
    - Hit enter for the last sector to allocate the end sector
-   - Press w to write and exit
-   *Note:
+   - Press w to write and exit<br>
+   *Note:<br>
     After exiting fdisk a error message should appear saying:
     Re-reading the partition table failed.: Device or resource busy
     This is fine since a reboot is needed in order to make the changes available.*
-7. Reboot the QEMU and run step 3 again, open a command prompt and enter the following command:
+7. Reboot the QEMU and run step 3 again, open a command prompt and enter the following command:<br>
   `$ sudo resize2fs /dev/sda2`
-8. The next step is increasing the swap size by entering:
+8. The next step is increasing the swap size by entering:<br>
    `$ sudo nano /etc/dphys-swapfile`
-   And change the setting CON_SWAPSIZE=1024 restart the service by running:
-  `$ sudo /etc/init.d/dphys-swapfile` stop and right afterwards
+   And change the setting CON_SWAPSIZE=1024 restart the service by running:<br>
+  `$ sudo /etc/init.d/dphys-swapfile` stop and right afterwards<br>
   `$ sudo /etc/init.d/dphys-swapfile` start the success can be verified by calling
-  `$ free -m` the swap size should now contain the new value.
-
-*Note:
+  `$ free -m` the swap size should now contain the new value.<br>
+*Note:<br>
 It's also possible to convert the image file into a .qcow using the following command, and then follow step 3.
 `$ qemu-img.exe convert -f raw -O qcow2 2017-11-29-raspbian-stretch.img 2017-11-29-raspbian-stretch.qcow`
 In order to debug add the option -serial stdio to step 3.*
