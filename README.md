@@ -20,7 +20,6 @@
 </div>
 
 This is a tutorial showing how to use QEMU to simulate a Raspberry Pi. The following programs are needed.
-- [Windows 10](https://www.microsoft.com/en-us/windows/get-windows-10)
 - [QEMU](https://www.qemu.org)
 
 ## Installation
@@ -90,4 +89,4 @@ Special thanks to [Saeid Yazdaniy](http://embedonix.com/articles/linux/emulating
 
 ## Contributing
 
-To get started with contributing to me GitHub repository, please contact me [Slack](https://slack.com).
+To get started with contributing to me GitHub repository, please contact me [Slack](https://join.slack.com/t/napi-friends/shared_invite/enQtNDg3OTg5NDc1NzUxLWU1MWNhNmY3ZTVmY2FkMDM1ODg1MWNlMDIyYTk1OTg4OThhYzgyNDc3ZmE5NzM1ZTM2ZDQwZGI0ZjU2M2JlNDU).
