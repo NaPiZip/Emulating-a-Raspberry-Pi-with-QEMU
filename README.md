@@ -1,6 +1,6 @@
 <img src="https://upload.wikimedia.org/wikipedia/de/thumb/c/cb/Raspberry_Pi_Logo.svg/1200px-Raspberry_Pi_Logo.svg.png" alt="Raspberry_Pi_Logo" height="42px" width="42px" align="left"><br>
 
-# Emulating a Raspberry Pi 3 with QEMU
+# Emulating a Raspberry Pi with QEMU
 <div>
     <a href="https://github.com/NaPiZip/Docker_GUI_Apps_on_Windows">
         <img src="https://img.shields.io/badge/Document%20Version-1.0.0-brightgreen.svg"/>
